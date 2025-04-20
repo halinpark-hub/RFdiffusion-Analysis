@@ -222,7 +222,6 @@ if __name__ == "__main__":
 ../RFdiffusion/examples 에 있는 여러 예시 shell script 파일 중에 unconditional monomer 파일은 총 3개
 
 **I. design_unconditional.sh**
-<img width="496" alt="Screenshot 2025-04-20 at 19 46 57" src="https://github.com/user-attachments/assets/de13daed-3b4d-4a22-8dc8-5ec4ba4b2674" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional 'contigmap.contigs=[100-200]' inference.num_designs=10 
@@ -232,7 +231,6 @@ if __name__ == "__main__":
 모델이 자신이 기억하는 학습된 구조 데이터를 바탕으로 구조 생성한다. contact potential 이나 ROG potential과 같은 조건을 살짝 걸어주는 역할이 없다.
 
 **II. design_unconditional_w_contact_potential.sh**
-<img width="467" alt="Screenshot 2025-04-20 at 19 48 49" src="https://github.com/user-attachments/assets/8b10418b-03c3-4f38-bf9a-f67bad4dfb53" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional_w_contact_potential'contigmap.contigs=[100-200]' inference.num_designs=10 'potentials.guiding_potentials=["type:monomer_contacts,weight:0.05"]'
@@ -250,7 +248,6 @@ contact potential의 가중치는 높을수록 접촉을 더 강하게 유도한
 
 **III. design_unconditional_w_monomer_ROG.sh**
 
-<img width="468" alt="Screenshot 2025-04-20 at 19 57 38" src="https://github.com/user-attachments/assets/58269038-c06a-4b7c-90ac-e8e5d74aaedd" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_monomer_ROG_unconditional
@@ -292,7 +289,6 @@ ROG: Radius of Gyration (회전반경) 단백질 구조의 무게중심으로부
 motifscaffolding.sh 예시파일은 **총 3개**
 
 **I. design_motifscaffolding.sh**
-<img width="506" alt="Screenshot 2025-04-20 at 20 16 53" src="https://github.com/user-attachments/assets/28a06fe9-60d8-420d-801c-6f3ac3971d72" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_motifscaffolding inference.input_pdb=input_pdbs/5TPN.pdb 'contigmap.contigs=[10-40/A163-181/10-40]' inference.num_designs=10
@@ -361,7 +357,8 @@ ___
 partialdiffusion.sh 예시파일은 **총 3개**
 
 **I. design_partialdiffusion.sh**
-<img width="537" alt="Screenshot 2025-04-20 at 18 52 52" src="https://github.com/user-attachments/assets/2bdf4b4f-4fc0-41a2-aefc-bb8033ec6248" />
+
+
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_partialdiffusion inference.input_pdb=input_pdbs/2KL8.pdb 'contigmap.contigs=[79-79]' inference.num_designs=10 diffuser.partial_T=10
 ```
