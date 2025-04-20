@@ -218,10 +218,6 @@ if __name__ == "__main__":
 
 # 1. An unconditional monomer 
 조건 없이 단백질 구조 생성
-![image](https://github.com/user-attachments/assets/6ae37ceb-438c-4b71-ba69-8f0ec74a4f4e)
-
-
-
 
 
 ../RFdiffusion/examples 에 있는 여러 예시 shell script 파일 중에 unconditional monomer 파일은 총 3개
@@ -355,11 +351,10 @@ ___
 
 
 기존 단백질 구조의 일부를 유지하면서, 선택한 영역만을 재설계
-
 partialdiffusion.sh 예시파일은 **총 3개**
 
 **I. design_partialdiffusion.sh**
-
+<img width="537" alt="Screenshot 2025-04-20 at 18 52 52" src="https://github.com/user-attachments/assets/2bdf4b4f-4fc0-41a2-aefc-bb8033ec6248" />
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_partialdiffusion inference.input_pdb=input_pdbs/2KL8.pdb 'contigmap.contigs=[79-79]' inference.num_designs=10 diffuser.partial_T=10
 ```
@@ -496,6 +491,7 @@ contigmap.inpaint_str=[B10-35] #inpainting: 해당 범위를 "비워두고" 모�
 
   scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference. #해당 directory에 다양한 scaffold 구조들 (.pdb)이 저장되어 있음. 모델은 이 중 하나를 골라서 binder의 뼈대로 사용
 
+
 ---
 
 ## 5. Fold Conditioning
@@ -508,6 +504,7 @@ symmetric oligomers의 예시파일은 **3개 **
 
 
 **I. design_dihedral_oligos.sh**
+<img width="500" alt="Screenshot 2025-04-20 at 18 46 50" src="https://github.com/user-attachments/assets/b5aed332-0599-4288-bf65-1649c2499500" />
 
 D2 대칭을 갖는 oligomer 단백질을 생성.
 대칭성을 이용한 de novo 단백질 설계
@@ -521,7 +518,6 @@ python ../scripts/run_inference.py --config-name=symmetry inference.symmetry="D2
 
  **design_dihedral_oligos.sh- Code Breakdown**
 
- 
 ```
 --config-name=symmetry #대칭성 설계모드를 활성화
 inference.symmetry="D2" #D2 대칭성: 총 4개의 단위체로 구성된 복합체. 2개의 직교 축을 기준으로 회전 대칭성을 가짐
@@ -543,9 +539,9 @@ potentials.guide_decay="quadratic" #유도 potential이 점점 줄어드는 방�
 
  ---
 **II. design_cyclic_oligos.sh**
+<img width="500" alt="Screenshot 2025-04-20 at 18 48 41" src="https://github.com/user-attachments/assets/81540f35-2ab2-4345-9e37-0e4f70d147a2" />
 
 C6: 하나의 중심 회전축을 기준으로 60도씩 회전해서 총 6개의 identical subunit이 원형으로 배열된 구조
-
 ex: 바이러스 단백질 capsid, pore 형성 단백질, channel 단백질
 
 ```
@@ -563,6 +559,8 @@ dihedral_oligos.sh 와 동일한 코드
 
  ---
 **III. design_tetrahedral_oligos.sh**
+<img width="500" alt="Screenshot 2025-04-20 at 18 50 36" src="https://github.com/user-attachments/assets/4fc14d7a-1b04-4c7e-820b-04282dd13b02" />
+
 
 정사면체 대칭 (tetrahderal symmetry) 를 가지는 올리고머 단백질을 설계
 
