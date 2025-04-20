@@ -1,4 +1,4 @@
-# RFdiffusion Analysis & Example_outputs 
+# RFdiffusion Analysis & Example Outputs 
 
 1. You should always activate conda everytime you run RF diffusion. 
 
