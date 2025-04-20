@@ -223,6 +223,7 @@ if __name__ == "__main__":
 ../RFdiffusion/examples 에 있는 여러 예시 shell script 파일 중에 unconditional monomer 파일은 총 3개
 
 **I. design_unconditional.sh**
+<img width="496" alt="Screenshot 2025-04-20 at 19 46 57" src="https://github.com/user-attachments/assets/de13daed-3b4d-4a22-8dc8-5ec4ba4b2674" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional 'contigmap.contigs=[100-200]' inference.num_designs=10 
@@ -232,6 +233,7 @@ if __name__ == "__main__":
 모델이 자신이 기억하는 학습된 구조 데이터를 바탕으로 구조 생성한다. contact potential 이나 ROG potential과 같은 조건을 살짝 걸어주는 역할이 없다.
 
 **II. design_unconditional_w_contact_potential.sh**
+<img width="467" alt="Screenshot 2025-04-20 at 19 48 49" src="https://github.com/user-attachments/assets/8b10418b-03c3-4f38-bf9a-f67bad4dfb53" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional_w_contact_potential'contigmap.contigs=[100-200]' inference.num_designs=10 'potentials.guiding_potentials=["type:monomer_contacts,weight:0.05"]'
