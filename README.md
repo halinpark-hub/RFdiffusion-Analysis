@@ -250,6 +250,8 @@ contact potential의 가중치는 높을수록 접촉을 더 강하게 유도한
 
 **III. design_unconditional_w_monomer_ROG.sh**
 
+<img width="468" alt="Screenshot 2025-04-20 at 19 57 38" src="https://github.com/user-attachments/assets/58269038-c06a-4b7c-90ac-e8e5d74aaedd" />
+
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_monomer_ROG_unconditional
  'contigmap.contigs=[100-200]' inference.num_designs=10 'potentials.guiding_potentials=["type:monomer_ROG,weight:1,min_dist:5"]' potentials.guide_scale=2 potentials.guide_decay="quadratic"
