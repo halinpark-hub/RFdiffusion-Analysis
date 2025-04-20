@@ -218,6 +218,7 @@ if __name__ == "__main__":
 
 # 1. An unconditional monomer 
 조건 없이 단백질 구조 생성
+![image](https://github.com/user-attachments/assets/7e4ecc50-3c40-4d53-b687-fd2ee3d6fec5)
 
 
 ../RFdiffusion/examples 에 있는 여러 예시 shell script 파일 중에 unconditional monomer 파일은 총 3개
