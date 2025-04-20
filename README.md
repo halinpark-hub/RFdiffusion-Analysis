@@ -292,6 +292,7 @@ ROG: Radius of Gyration (회전반경) 단백질 구조의 무게중심으로부
 motifscaffolding.sh 예시파일은 **총 3개**
 
 **I. design_motifscaffolding.sh**
+<img width="506" alt="Screenshot 2025-04-20 at 20 16 53" src="https://github.com/user-attachments/assets/28a06fe9-60d8-420d-801c-6f3ac3971d72" />
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_motifscaffolding inference.input_pdb=input_pdbs/5TPN.pdb 'contigmap.contigs=[10-40/A163-181/10-40]' inference.num_designs=10
