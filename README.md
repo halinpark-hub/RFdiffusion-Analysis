@@ -220,7 +220,7 @@ if __name__ == "__main__":
 # 1. An unconditional monomer 
 조건 없이 단백질 구조 생성
 
-**I. design_unconditional.sh**
+### I. design_unconditional.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional 'contigmap.contigs=[100-200]' inference.num_designs=10 
@@ -229,7 +229,7 @@ if __name__ == "__main__":
 
 모델이 자신이 기억하는 학습된 구조 데이터를 바탕으로 구조를 생성한다. contact potential 이나 ROG potential과 같은 조건을 살짝 걸어주는 역할이 없다.
 
-**II. design_unconditional_w_contact_potential.sh**
+### II. design_unconditional_w_contact_potential.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_unconditional_w_contact_potential'contigmap.contigs=[100-200]' inference.num_designs=10 'potentials.guiding_potentials=["type:monomer_contacts,weight:0.05"]'
@@ -245,7 +245,7 @@ contact potential의 가중치는 높을수록 접촉을 더 강하게 유도한
 
 하지만, 단백질이 무조건 루즈하게 접히는 것은 아니다. 접촉 말고 다른 요소(서열, 폴딩 에너지)가 단백질 접힘에 영향을 줄 수 있기 때문이다.
 
-**III. design_unconditional_w_monomer_ROG.sh**
+### III. design_unconditional_w_monomer_ROG.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_monomer_ROG_unconditional
@@ -255,7 +255,8 @@ ROG: Radius of Gyration (회전반경) 단백질 구조의 무게중심으로부
 단백질 구조가 너무 퍼지거나 너무 압축되지 않도록 유지하게 도와주는 potential이다. 
 
 
-**design_unconditional monomer.sh - Code Breakdown (All three scripts included)**
+### design_unconditional monomer.sh - Code Breakdown (All three scripts included)
+
 
 ```
 'run_inference.py' #python 스크립트 실행
@@ -281,14 +282,14 @@ ROG: Radius of Gyration (회전반경) 단백질 구조의 무게중심으로부
 기존에 알려진 단백질의 중요 motif 를 유지하면서, 그 주위에 새로운 단백질 구조를 디자인
 
 
-**I. design_motifscaffolding.sh**
+### I. design_motifscaffolding.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_motifscaffolding inference.input_pdb=input_pdbs/5TPN.pdb 'contigmap.contigs=[10-40/A163-181/10-40]' inference.num_designs=10
 ```
 
 
-**II. design_motifscaffolding_inpanitseq.sh**
+### II. design_motifscaffolding_inpanitseq.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_motifscaffolding_inpaintseq inference.input_pdb=input_pdbs/5TPN.pdb 'contigmap.contigs=[10-40/A163-181/10-40]' inference.num_designs=10 'contigmap.inpaint_seq=[A163-168/A170-171/A179]'
@@ -297,7 +298,7 @@ Motif 안에서 몇개의 잔기만 단백질 기능을 수행하는데 핵심 �
 덜 중요한 residue는 새로 디자인하므로써 구조적으로 안정적인 단백질을 디자인할 수 있다.
 
 
-**III. design_motifscaffolding_with_target.sh**
+### III. design_motifscaffolding_with_target.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_motifscaffolding_with_target inference.input_pdb=input_pdbs/1YCR.pdb 'contigmap.contigs=[A25-109/0 0-70/B17-29/0-70]' contigmap.length=70-120 inference.num_designs=10 inference.ckpt_override_path=../models/Complex_base_ckpt.pt
@@ -346,7 +347,7 @@ ___
 
 기존 단백질 구조의 일부를 유지하면서, 선택한 영역만을 재설계한다. 
 
-**I. design_partialdiffusion.sh**
+### I. design_partialdiffusion.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_partialdiffusion inference.input_pdb=input_pdbs/2KL8.pdb 'contigmap.contigs=[79-79]' inference.num_designs=10 diffuser.partial_T=10
@@ -366,19 +367,19 @@ RF diffusion은 체인없이 [N-N] 숫자만 쓰여서 '길이 N짜리 구조' �
 
 주의해야 할 것은, 입력 pdb 단백질 길이가 79이라면, contigmap.contigs 로 지정하는 길이도 79이여야 한다.
 
-**II. design_partialdiffusion_multipleseq.sh**
+### II. design_partialdiffusion_multipleseq.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_partialdiffusion_peptidewithmultiplesequence inference.input_pdb=input_pdbs/peptide_complex_ideal_helix.pdb 'contigmap.contigs=["172-172/0 34-34"]' diffuser.partial_T=10 inference.num_designs=10 'contigmap.provide_seq=[172-177,200-205]'
 ```
 
-**III. design_partialdiffusion_withseq.sh**
+### III. design_partialdiffusion_withseq.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_partialdiffusion_peptidewithsequence inference.input_pdb=input_pdbs/peptide_complex_ideal_helix.pdb 'contigmap.contigs=["172-172/0 34-34"]' diffuser.partial_T=10 inference.num_designs=10 'contigmap.provide_seq=[172-205]'
 ```
 
- **partialdiffusion.sh, multipleseq.sh, withseq.sh - Code Breakdown**
+### partialdiffusion.sh, multipleseq.sh, withseq.sh - Code Breakdown
 
  ```
  #공통 code
@@ -403,7 +404,7 @@ RF diffusion은 체인없이 [N-N] 숫자만 쓰여서 '길이 N짜리 구조' �
 ppi: protein-protein interaction 기반의 binder 설계한다. 
 
 
-**I. design_ppi.sh**
+### I. design_ppi.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_ppi inference.input_pdb=input_pdbs/insulin_target.pdb 'contigmap.contigs=[A1-150/0 70-100]' 'ppi.hotspot_res=[A59,A83,A91]' inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
@@ -416,14 +417,14 @@ insulin receptor에 결합하는 binder 단백질을 de novo로 설계한다.(bi
 inference 시에 노이즈를 0으로 설정해서 더 정밀한 결과를 얻을 수 있다. 
 
 
-**II. design_ppi_flexible_peptide.sh**
+### II. design_ppi_flexible_peptide.sh
 
 ```
 ../scripts/run_inference.py inference.output_prefix=example_outputs/design_ppi_flexible_peptide inference.input_pdb=input_pdbs/3IOL.pdb 'contigmap.contigs=[B10-35/0 70-100]' 'ppi.hotspot_res=[B28,B29]' inference.num_designs=10 'contigmap.inpaint_str=[B10-35]'
 ```
 GLP-1 peptide (chain B, 10~35번)를 topology 나 peptide의 구조를 설정해놓지 않고 구조를 유연하게 만들도록 한다. 유연한 펩타이드(GLP-1, B10-35번)의 구조를 예측하면서 동시에 그 펩타이드에 결합하는 70-100번 residue 크기의 binder 단백질을 de novo 설계한다. 
 
-**III. design_ppi_scaffolded.sh**
+### III. design_ppi_scaffolded.sh
 
 ```
 ../scripts/run_inference.py scaffoldguided.target_path=input_pdbs/insulin_target.pdb inference.output_prefix=example_outputs/design_ppi_scaffolded scaffoldguided.scaffoldguided=True 'ppi.hotspot_res=[A59,A83,A91]' scaffoldguided.target_pdb=True scaffoldguided.target_ss=target_folds/insulin_target_ss.pt scaffoldguided.target_adj=target_folds/insulin_target_adj.pt scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
@@ -432,7 +433,7 @@ GLP-1 peptide (chain B, 10~35번)를 topology 나 peptide의 구조를 설정해
 위의 두 예제와는 달리, binder의 scaffold topology (구조적 뼈대)를 미리 정의해서, 그 구조 위에서 binder를 정밀하게 설계한다. 
 Insulin receptor의 A59, A83, A91 residue 근처에 결합하는 binder를 미리 정의된 단백질 scaffold 구조 위에서 설계한다. 
 
- **design_ppi.sh- Code Breakdown**
+### design_ppi.sh- Code Breakdown
 
  ```
 #design_ppi.sh
@@ -470,13 +471,13 @@ scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference.  #해당 directory에 �
 
 # 5. Fold Conditioning
 
- **design_ppi_scaffolded.sh- Code Breakdown**
+### design_ppi_scaffolded.sh- Code Breakdown
 
 ---
 
 # 6. Generation of Symmetric Oligomers
 
-**I. design_dihedral_oligos.sh**
+### I. design_dihedral_oligos.sh
 <img width="500" alt="Screenshot 2025-04-20 at 18 46 50" src="https://github.com/user-attachments/assets/b5aed332-0599-4288-bf65-1649c2499500" />
 
 D2 대칭을 갖는 oligomer 단백질을 생성한다. 
@@ -489,7 +490,7 @@ python ../scripts/run_inference.py --config-name=symmetry inference.symmetry="D2
 
 총 320개의 아미노산으로 구성된 D2 대칭성 단백질 복합체를 intra- & inter-chain 접촉 유도 potential 을 사용해 10개 설계한다. 
 
- **design_dihedral_oligos.sh- Code Breakdown**
+### design_dihedral_oligos.sh- Code Breakdown
 
 ```
 --config-name=symmetry #대칭성 설계모드를 활성화
@@ -510,7 +511,7 @@ potentials.guide_decay="quadratic" #유도 potential이 점점 줄어드는 방�
 'contigmap.contigs=[320-320]' #총 320개의 아미노산으로 구성도니 단백질 구조를 설계하라는 의미. #D2 대칭이기에, 내부적으로는 80-residue 단위치 4개로 분할됨. (320/4=80)
 ```
  
-**II. design_cyclic_oligos.sh**
+### II. design_cyclic_oligos.sh
 <img width="500" alt="Screenshot 2025-04-20 at 18 48 41" src="https://github.com/user-attachments/assets/81540f35-2ab2-4345-9e37-0e4f70d147a2" />
 
 C6: 하나의 중심 회전축을 기준으로 60도씩 회전해서 총 6개의 identical subunit이 원형으로 배열된 구조이다. 
@@ -521,12 +522,12 @@ ex: 바이러스 단백질 capsid, pore 형성 단백질, channel 단백질
 python ../scripts/run_inference.py --config-name=symmetry inference.symmetry="C6" inference.num_designs=10 inference.output_prefix="example_outputs/C6_oligo" 'potentials.guiding_potentials=["type:olig_contacts,weight_intra:1,weight_inter:0.1"]' potentials.olig_intra_all=True potentials.olig_inter_all=True potentials.guide_scale=2.0 potentials.guide_decay="quadratic" 'contigmap.contigs=[480-480]'
 ```
 
- **design_cyclic_oligos.sh- Code Breakdown**
+### design_cyclic_oligos.sh- Code Breakdown
 ```
 dihedral_oligos.sh 와 동일한 코드
 ```
 
-**III. design_tetrahedral_oligos.sh**
+### III. design_tetrahedral_oligos.sh
 <img width="500" alt="Screenshot 2025-04-20 at 18 50 36" src="https://github.com/user-attachments/assets/4fc14d7a-1b04-4c7e-820b-04282dd13b02" />
 
 
@@ -539,7 +540,7 @@ python ../scripts/run_inference.py --config-name=symmetry inference.symmetry="te
 
 총 1200개의 아미노산으로 구성된, 정사면체 대칭성을 따르는 고차원 대칭성 단백질 복합체를 10개 생성한다. 
 
-**design_tetrahedral_oligos.sh- Code Breakdown**
+### design_tetrahedral_oligos.sh- Code Breakdown
 
 ```
 dihedral_oligos.sh 와 design_cyclic_oligos.sh 와 동일한 코드
@@ -549,7 +550,7 @@ dihedral_oligos.sh 와 design_cyclic_oligos.sh 와 동일한 코드
 # 7. Symmetric Motif Scaffolding
 
 
-**design_nickel.sh**
+### design_nickel.sh
 
 C4 대칭성을 갖는 단백질 복합체를 설계하면서, 그 안에 대칭적으로 배치된 nickel-binding motif를 정확하게 유지하도록 scaffold(지지 구조)를 만든다. 
 
@@ -559,8 +560,7 @@ python ../scripts/run_inference.py inference.symmetry="C4" inference.num_designs
 Nickel-binding motif 4개(A2-4, A7-9,A12-14, A17-19)를 유지한 채 그 주위를 감싸는 C4 대칭의 단백질 scaffold 를 RF diffusion이 설계한다. 
 
 
-**design_nickel.sh- Code
-Breakdown**
+### design_nickel.sh- Code Breakdown
 
 ```
 #symmetric oligomers 코드와 동일하고 추가 코드:
