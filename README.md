@@ -420,7 +420,6 @@ insulin receptor에 결합하는 binder 단백질을 de novo로 설계한다.(bi
 
 inference 시에 노이즈를 0으로 설정해서 더 정밀한 결과를 얻을 수 있다. 
 
-
 ### II. design_ppi_flexible_peptide.sh
 
 ```
@@ -428,16 +427,9 @@ inference 시에 노이즈를 0으로 설정해서 더 정밀한 결과를 얻�
 ```
 GLP-1 peptide (chain B, 10~35번)를 topology 나 peptide의 구조를 설정해놓지 않고 구조를 유연하게 만들도록 한다. 유연한 펩타이드(GLP-1, B10-35번)의 구조를 예측하면서 동시에 그 펩타이드에 결합하는 70-100번 residue 크기의 binder 단백질을 de novo 설계한다. 
 
-### III. design_ppi_scaffolded.sh
 
-```
-../scripts/run_inference.py scaffoldguided.target_path=input_pdbs/insulin_target.pdb inference.output_prefix=example_outputs/design_ppi_scaffolded scaffoldguided.scaffoldguided=True 'ppi.hotspot_res=[A59,A83,A91]' scaffoldguided.target_pdb=True scaffoldguided.target_ss=target_folds/insulin_target_ss.pt scaffoldguided.target_adj=target_folds/insulin_target_adj.pt scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
-```
 
-위의 두 예제와는 달리, binder의 scaffold topology (구조적 뼈대)를 미리 정의해서, 그 구조 위에서 binder를 정밀하게 설계한다. 
-Insulin receptor의 A59, A83, A91 residue 근처에 결합하는 binder를 미리 정의된 단백질 scaffold 구조 위에서 설계한다. 
-
-### design_ppi.sh- Code Breakdown
+### design_ppi, design_ppi_flexible_peptide.sh- Code Breakdown
 
  ```
 #design_ppi.sh
@@ -454,10 +446,28 @@ Insulin receptor의 A59, A83, A91 residue 근처에 결합하는 binder를 미�
 
 denoiser.noise_scale_ca=0, denoiser.noise_scale_frame=0 #noise scale을 0으로 설정했으므로, 구조 변화 없이 거의 정적인 조건에서 디자인. 주로 결합 위치만 고정하고 binder만 새로 설계할 때 사용됨. #프레임(방향,회전)에 적용되는 노이즈 양을 0ㅇ로 설정. 즉, 단백질의 방향기/기울기는 건드리지 않음
 
-
 #design_ppi_flexible_peptide.sh
 
 contigmap.inpaint_str=[B10-35] #inpainting: 해당 범위를 "비워두고" 모델이 새롭게 설계됨. 즉, 원래 펩타이드 GLP-1의 원래 구조를 그대로 쓰지 않고, RF diffusion이 해당 부위 구조도 함께 예측하게 만듬. 결국에는, binder 설계 + 일부분의 peptide 구조 예측 동시 수행
+
+```
+
+---
+
+# 5. Fold Conditioning
+
+
+### I. design_ppi_scaffolded.sh
+
+```
+../scripts/run_inference.py scaffoldguided.target_path=input_pdbs/insulin_target.pdb inference.output_prefix=example_outputs/design_ppi_scaffolded scaffoldguided.scaffoldguided=True 'ppi.hotspot_res=[A59,A83,A91]' scaffoldguided.target_pdb=True scaffoldguided.target_ss=target_folds/insulin_target_ss.pt scaffoldguided.target_adj=target_folds/insulin_target_adj.pt scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference.num_designs=10 denoiser.noise_scale_ca=0 denoiser.noise_scale_frame=0
+```
+
+위의 예제와는 달리, binder의 scaffold topology (구조적 뼈대)를 미리 정의해서, 그 구조 위에서 binder를 정밀하게 설계한다. 
+Insulin receptor의 A59, A83, A91 residue 근처에 결합하는 binder를 미리 정의된 단백질 scaffold 구조 위에서 설계한다. 
+
+### design_ppi_scaffolded.sh- Code Breakdown
+```
 
 #design_ppi_scaffolded.sh
 
@@ -471,11 +481,7 @@ scaffoldguided.target_adj=target_folds/insulin_target_adj.pt #타겟 단백질�
 scaffoldguided.scaffold_dir=./ppi_scaffolds/ inference.  #해당 directory에 다양한 scaffold 구조들 (.pdb)이 저장되어 있음. 모델은 이 중 하나를 골라서 binder의 뼈대로 사용
 ```
 
----
 
-# 5. Fold Conditioning
-
-### design_ppi_scaffolded.sh- Code Breakdown
 
 ---
 
@@ -570,3 +576,5 @@ Nickel-binding motif 4개(A2-4, A7-9,A12-14, A17-19)를 유지한 채 그 주위
 #symmetric oligomers 코드와 동일하고 추가 코드:
 inference.ckpt_override_path=$ckpt #성능이 더 좋은 base_epoch8_ckpt.pt 모델을 사용
 ```
+`inference.ckpt_override_path=$ckpt`에서 $ckpt 환경변수가 정의되지 않아서, RFdiffusion이 빈 경로(' ')를 로딩하려다가 실패했다. 
+PyTorch가 비어있는 경로에서 .pt모델 파일을 불러오려다가 FileNotFoundError 발생했다. 따라서, 경로를 직접 명시하였다. inference.ckpt_override_path=/home/halin/RFdiffusion-main/models/InpaintSeq_ckpt.pt
