@@ -1,4 +1,4 @@
-# RFdiffusion Analysis 
+# RFdiffusion Code Analysis 
 
 1. 예제를 실행하기 전에, 아래 명령어를 통해 GPU 환경이 설정된 Conda 환경을 활성화해야 한다. 
 
