@@ -546,7 +546,7 @@ dihedral_oligos.sh 와 design_cyclic_oligos.sh 와 동일한 코드
 ```
 
 ---
-## 7. Symmetric Motif Scaffolding
+# 7. Symmetric Motif Scaffolding
 
 
 **design_nickel.sh**
