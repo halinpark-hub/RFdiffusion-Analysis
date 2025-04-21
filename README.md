@@ -538,7 +538,7 @@ dihedral_oligos.sh 와 동일한 코드
 ```
 
 ### III. design_tetrahedral_oligos.sh
-<img width="549" alt="Screenshot 2025-04-21 at 14 50 27" src="https://github.com/user-attachments/assets/fe857779-2c69-4a1d-92ed-8c4fa78527b3" />
+<img width="500" alt="Screenshot 2025-04-21 at 14 50 27" src="https://github.com/user-attachments/assets/fe857779-2c69-4a1d-92ed-8c4fa78527b3" />
 
 
 
