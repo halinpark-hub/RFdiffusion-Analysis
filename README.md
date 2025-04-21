@@ -255,7 +255,7 @@ ROG: Radius of Gyration (회전반경) 단백질 구조의 무게중심으로부
 단백질 구조가 너무 퍼지거나 너무 압축되지 않도록 유지하게 도와주는 potential이다. 
 
 
-#### design_unconditional monomer.sh - Code Breakdown (All three scripts included)
+**design_unconditional monomer.sh - Code Breakdown (All three scripts included)**
 
 ```
 'run_inference.py' #python 스크립트 실행
