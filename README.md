@@ -575,4 +575,4 @@ Nickel-binding motif 4개(A2-4, A7-9,A12-14, A17-19)를 유지한 채 그 주위
 inference.ckpt_override_path=$ckpt #성능이 더 좋은 base_epoch8_ckpt.pt 모델을 사용
 ```
 `inference.ckpt_override_path=$ckpt`에서 $ckpt 환경변수가 정의되지 않아서, RFdiffusion이 빈 경로(' ')를 로딩하려다가 실패했다. 
-PyTorch가 비어있는 경로에서 .pt모델 파일을 불러오려다가 FileNotFoundError 발생했다. 따라서, 경로를 직접 명시하였다. inference.ckpt_override_path=/home/halin/RFdiffusion-main/models/InpaintSeq_ckpt.pt
+PyTorch가 비어있는 경로에서 .pt모델 파일을 불러오려다가 FileNotFoundError 발생했다. 따라서, 경로를 직접 명시하였다. `inference.ckpt_override_path=/home/halin/RFdiffusion-main/models/InpaintSeq_ckpt.pt`
