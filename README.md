@@ -538,7 +538,8 @@ dihedral_oligos.sh 와 동일한 코드
 ```
 
 ### III. design_tetrahedral_oligos.sh
-<img width="500" alt="Screenshot 2025-04-20 at 18 50 36" src="https://github.com/user-attachments/assets/4fc14d7a-1b04-4c7e-820b-04282dd13b02" />
+<img width="549" alt="Screenshot 2025-04-21 at 14 50 27" src="https://github.com/user-attachments/assets/fe857779-2c69-4a1d-92ed-8c4fa78527b3" />
+
 
 
 정사면체 대칭 (tetrahderal symmetry) 를 가지는 올리고머 단백질을 설계한다. 
