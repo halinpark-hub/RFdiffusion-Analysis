@@ -396,7 +396,7 @@ RF diffusion은 체인없이 [N-N] 숫자만 쓰여서 '길이 N짜리 구조' �
 ```
 
 ---
-## 4. Binder Design
+# 4. Binder Design
 
 어떤 단백질 (A) 에 딱 달라붙는 새로운 단백질 (B)를 설계한다. 
 
